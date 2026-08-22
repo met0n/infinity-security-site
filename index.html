@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinity Security — Segurança ofensiva, pentest e Red Team</title>
+<meta name="description" content="Boutique de segurança ofensiva: pentest web, API, infraestrutura, cloud e mobile, phishing e Red Team. Evidências reproduzíveis e reteste das correções.">
+<link rel="canonical" href="https://infinitysecurity.com.br/">
+<meta name="theme-color" content="#08111f">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Infinity Security">
+<meta property="og:title" content="Infinity Security — Segurança ofensiva, pentest e Red Team">
+<meta property="og:description" content="Simulamos ataques reais, de forma ética e autorizada, para transformar risco invisível em evidência, prioridade e correção verificada.">
+<meta property="og:url" content="https://infinitysecurity.com.br/">
+<meta property="og:image" content="https://infinitysecurity.com.br/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Infinity Security — Segurança ofensiva, pentest e Red Team">
+<meta name="twitter:description" content="Simulamos ataques reais, de forma ética e autorizada, para transformar risco invisível em evidência, prioridade e correção verificada.">
+<meta name="twitter:image" content="https://infinitysecurity.com.br/assets/img/og-image.png">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+
+<link rel="preload" href="/assets/fonts/hanken-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>document.documentElement.classList.remove('no-js');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://infinitysecurity.com.br/#organization",
+  "name": "Infinity Security",
+  "description": "Boutique de segurança ofensiva especializada em testes de intrusão, campanhas de phishing e operações de Red Team.",
+  "url": "https://infinitysecurity.com.br/",
+  "logo": "https://infinitysecurity.com.br/assets/img/logo-lockup-dark.svg",
+  "image": "https://infinitysecurity.com.br/assets/img/og-image.png",
+  "telephone": "+55-85-99924-3465",
+  "taxID": "68.537.755/0001-63",
+  "areaServed": "BR",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua José Alencar Ramos, 385, Sala 3",
+    "addressLocality": "Fortaleza",
+    "addressRegion": "CE",
+    "addressCountry": "BR"
+  },
+  "knowsAbout": ["Teste de intrusão","Red Team","Segurança de aplicações","Segurança em nuvem","Engenharia social","Segurança de API"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Serviços de segurança ofensiva",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pentest Web", "url": "https://infinitysecurity.com.br/servicos/pentest-web" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pentest de Infraestrutura", "url": "https://infinitysecurity.com.br/servicos/pentest-infraestrutura" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pentest Cloud", "url": "https://infinitysecurity.com.br/servicos/pentest-cloud" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pentest Mobile", "url": "https://infinitysecurity.com.br/servicos/pentest-mobile" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pentest de API", "url": "https://infinitysecurity.com.br/servicos/pentest-api" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Campanhas de Phishing", "url": "https://infinitysecurity.com.br/servicos/phishing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Operações de Red Team", "url": "https://infinitysecurity.com.br/servicos/red-team" } }
+    ]
+  }
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+<!-- ============================ NAVEGAÇÃO ============================ -->
+<header class="nav" data-nav>
+  <div class="container container--wide nav__inner">
+    <a class="nav__logo" href="/" aria-label="Infinity Security — página inicial">
+      <img src="/assets/img/logo-lockup-dark.svg" alt="Infinity Security" width="136" height="26">
+    </a>
+
+    <nav aria-label="Principal">
+      <ul class="nav__menu">
+        <li class="nav__group">
+          <a class="nav__link" href="/servicos">
+            Serviços
+            <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </a>
+          <div class="nav__panel">
+            <ul class="nav__panel-grid">
+              <li><a class="nav__panel-link" href="/servicos/pentest-web"><strong>Pentest Web</strong><span>Aplicações, portais e regras de negócio</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-api"><strong>Pentest de API</strong><span>Integrações, autorização e fluxos críticos</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-infraestrutura"><strong>Pentest de Infraestrutura</strong><span>Perímetro, redes internas e servidores</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-cloud"><strong>Pentest Cloud</strong><span>AWS, Azure e GCP: identidade e configuração</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-mobile"><strong>Pentest Mobile</strong><span>iOS e Android, análise estática e dinâmica</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/phishing"><strong>Campanhas de Phishing</strong><span>Resiliência humana a engenharia social</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/red-team"><strong>Operações de Red Team</strong><span>Pessoas, processos, tecnologia e detecção</span></a></li>
+            </ul>
+            <div class="nav__panel-foot">
+              <span>07 superfícies cobertas</span>
+              <a class="link-arrow" href="/servicos">Ver todos os serviços <span class="arw" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </li>
+        <li><a class="nav__link" href="/metodologia">Metodologia</a></li>
+        <li><a class="nav__link" href="/sobre">Sobre</a></li>
+        <li><a class="nav__link" href="/contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn" href="/contato">Solicitar avaliação</a>
+      <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-drawer" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav__drawer" id="nav-drawer" data-nav-drawer>
+  <nav aria-label="Menu mobile">
+    <ul class="nav__drawer-main">
+      <li>
+        <a href="/servicos">Serviços <span aria-hidden="true">→</span></a>
+        <ul class="nav__drawer-sub">
+          <li><a href="/servicos/pentest-web">Pentest Web</a></li>
+          <li><a href="/servicos/pentest-api">Pentest de API</a></li>
+          <li><a href="/servicos/pentest-infraestrutura">Pentest de Infraestrutura</a></li>
+          <li><a href="/servicos/pentest-cloud">Pentest Cloud</a></li>
+          <li><a href="/servicos/pentest-mobile">Pentest Mobile</a></li>
+          <li><a href="/servicos/phishing">Campanhas de Phishing</a></li>
+          <li><a href="/servicos/red-team">Operações de Red Team</a></li>
+        </ul>
+      </li>
+      <li><a href="/metodologia">Metodologia <span aria-hidden="true">→</span></a></li>
+      <li><a href="/sobre">Sobre <span aria-hidden="true">→</span></a></li>
+      <li><a href="/contato">Contato <span aria-hidden="true">→</span></a></li>
+    </ul>
+    <a class="btn" href="/contato">Solicitar avaliação</a>
+    <p class="nav__drawer-meta">
+      WhatsApp +55 85 99924-3465<br>
+      Fortaleza — CE
+    </p>
+  </nav>
+</div>
+
+<main id="conteudo">
+
+<!-- ============================ 01 · HERO ============================ -->
+<section class="hero">
+  <canvas class="hero__canvas" data-shield-canvas aria-hidden="true"></canvas>
+  <div class="container container--wide hero__grid">
+
+    <div>
+      <p class="eyebrow enter">Boutique de segurança ofensiva</p>
+      <h1 class="hero__title enter" style="--reveal-delay:60ms">
+        Encontramos o caminho até os seus sistemas <em>antes que um adversário encontre.</em>
+      </h1>
+      <p class="hero__lead enter" style="--reveal-delay:150ms">
+        Simulamos ataques reais — de forma ética e autorizada — para transformar
+        risco invisível em evidência reproduzível, prioridade por impacto de
+        negócio e correção verificada por reteste.
+      </p>
+      <div class="hero__cta enter" style="--reveal-delay:230ms">
+        <a class="btn" href="/contato">Solicitar avaliação <span class="arw" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="/metodologia">Como conduzimos um teste</a>
+      </div>
+      <div class="hero__foot enter" style="--reveal-delay:320ms">
+        <span>Testes manuais e direcionados</span>
+        <span>Prova de conceito para cada achado</span>
+        <span>Reteste das correções</span>
+      </div>
+    </div>
+
+    <div class="hero__object" data-shield-anchor aria-hidden="true"></div>
+  </div>
+
+  <div class="container container--wide hero__rail reveal" style="--reveal-delay:460ms">
+    <p class="hero__rail-label">Superfície coberta <span>07 / 07</span></p>
+    <ul>
+      <li><span>01</span><a href="/servicos/pentest-web">Aplicações web</a></li>
+      <li><span>02</span><a href="/servicos/pentest-api">Integrações e APIs</a></li>
+      <li><span>03</span><a href="/servicos/pentest-infraestrutura">Redes e servidores</a></li>
+      <li><span>04</span><a href="/servicos/pentest-cloud">Ambientes em nuvem</a></li>
+      <li><span>05</span><a href="/servicos/pentest-mobile">Aplicativos móveis</a></li>
+      <li><span>06</span><a href="/servicos/phishing">Fator humano</a></li>
+      <li><span>07</span><a href="/servicos/red-team">Detecção e resposta</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ 02 · O PROBLEMA ============================ -->
+<section class="section theme-ink dotfield" aria-labelledby="h-problema">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="chapter-index reveal">01 — O problema</p>
+        <h2 id="h-problema" class="reveal" style="--reveal-delay:60ms">
+          Sua superfície de ataque não termina no firewall.
+        </h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <p style="margin-top:0">
+          Cada integração publicada, credencial criada, bucket provisionado e
+          colaborador conectado amplia o território que precisa ser defendido.
+          A superfície cresce junto com o negócio — e raramente é reavaliada
+          na mesma velocidade.
+        </p>
+        <p style="margin-top:1rem;font-size:var(--fs-small)">
+          Por isso, presumir que um ambiente está protegido é um dos maiores
+          riscos que uma empresa pode assumir. Segurança não se declara: se verifica.
+        </p>
+      </div>
+    </div>
+
+    <div class="surface-map reveal" style="--reveal-delay:200ms" data-diagram>
+      <svg viewBox="0 0 980 268" role="img" aria-labelledby="map-title" preserveAspectRatio="xMidYMid meet">
+        <title id="map-title">Diagrama: o perímetro tradicional é apenas uma das camadas expostas hoje</title>
+        <defs>
+          <linearGradient id="mapLine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#246bfd" stop-opacity="0"/>
+            <stop offset="0.55" stop-color="#59b8ff" stop-opacity="0.9"/>
+            <stop offset="1" stop-color="#246bfd" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <rect class="map-box" x="0" y="80" width="196" height="108" rx="10"/>
+        <text class="map-label" x="98" y="126" text-anchor="middle">PERÍMETRO</text>
+        <text class="map-sub" x="98" y="150" text-anchor="middle">o que costumava bastar</text>
+
+        <path class="map-flow" d="M196 134 H 300" stroke="url(#mapLine)"/>
+
+        <path class="map-branch" d="M300 134 C 330 134 336 24 366 24"/>
+        <path class="map-branch" d="M300 134 C 330 134 336 79 366 79"/>
+        <path class="map-branch" d="M300 134 H 366"/>
+        <path class="map-branch" d="M300 134 C 330 134 336 189 366 189"/>
+        <path class="map-branch" d="M300 134 C 330 134 336 244 366 244"/>
+
+        <g class="map-node" style="--i:0">
+          <circle cx="366" cy="24" r="5"/>
+          <text x="388" y="24">Aplicações e portais expostos</text>
+          <text class="map-tag" x="960" y="24" text-anchor="end">PENTEST WEB</text>
+        </g>
+        <g class="map-node" style="--i:1">
+          <circle cx="366" cy="79" r="5"/>
+          <text x="388" y="79">APIs e integrações com parceiros</text>
+          <text class="map-tag" x="960" y="79" text-anchor="end">PENTEST API</text>
+        </g>
+        <g class="map-node" style="--i:2">
+          <circle cx="366" cy="134" r="5"/>
+          <text x="388" y="134">Identidades, permissões e dados em nuvem</text>
+          <text class="map-tag" x="960" y="134" text-anchor="end">CLOUD · INFRA</text>
+        </g>
+        <g class="map-node" style="--i:3">
+          <circle cx="366" cy="189" r="5"/>
+          <text x="388" y="189">Aplicativos móveis e armazenamento local</text>
+          <text class="map-tag" x="960" y="189" text-anchor="end">PENTEST MOBILE</text>
+        </g>
+        <g class="map-node" style="--i:4">
+          <circle cx="366" cy="244" r="5"/>
+          <text x="388" y="244">Pessoas, credenciais e sessões válidas</text>
+          <text class="map-tag" x="960" y="244" text-anchor="end">PHISHING · RED TEAM</text>
+        </g>
+
+        <line class="map-rule" x1="366" y1="24"  x2="960" y2="24"/>
+        <line class="map-rule" x1="366" y1="79"  x2="960" y2="79"/>
+        <line class="map-rule" x1="366" y1="134" x2="960" y2="134"/>
+        <line class="map-rule" x1="366" y1="189" x2="960" y2="189"/>
+        <line class="map-rule" x1="366" y1="244" x2="960" y2="244"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 03 · SERVIÇOS ============================ -->
+<section class="section theme-dark" id="servicos" aria-labelledby="h-servicos">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="chapter-index reveal">02 — Serviços</p>
+        <h2 id="h-servicos" class="reveal" style="--reveal-delay:60ms">Sete formas de descobrir o mesmo problema mais cedo.</h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <p style="margin-top:0">
+          Cada serviço ataca uma parte diferente da superfície e responde a uma
+          pergunta diferente. O escopo é montado a partir da sua realidade —
+          não de um pacote fechado.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:var(--sp-8)">
+
+      <a class="svc-card reveal" href="/servicos/pentest-web">
+        <div class="svc-card__top">
+          <span class="svc-card__num">01</span>
+          <svg class="svc-card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="4" y="7" width="32" height="26" rx="3" stroke="#59b8ff" stroke-width="1.2" opacity=".55"/>
+            <path d="M4 14h32" stroke="#59b8ff" stroke-width="1.2" opacity=".55"/>
+            <circle cx="8.5" cy="10.5" r="1.2" fill="#59b8ff"/><circle cx="12.5" cy="10.5" r="1.2" fill="#246bfd"/>
+            <circle cx="14" cy="22" r="2.4" fill="#246bfd"/><circle cx="22" cy="22" r="2.4" fill="#59b8ff"/><circle cx="30" cy="22" r="2.4" fill="#59b8ff" opacity=".45"/>
+            <path d="M16.4 22h3.2M24.4 22h3.2" stroke="#59b8ff" stroke-width="1.1"/>
+          </svg>
+        </div>
+        <h3>Pentest Web</h3>
+        <p>Intrusão simulada contra aplicações e portais, incluindo autenticação, autorização e as regras de negócio que sustentam a operação.</p>
+        <div class="svc-card__tags"><span>OWASP</span><span>Lógica de negócio</span><span>Sessão</span></div>
+        <span class="svc-card__foot">Ver serviço <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="svc-card reveal" href="/servicos/pentest-api" style="--reveal-delay:70ms">
+        <div class="svc-card__top">
+          <span class="svc-card__num">02</span>
+          <svg class="svc-card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="8" cy="20" r="3" fill="#246bfd"/><circle cx="20" cy="20" r="3.4" fill="#59b8ff"/>
+            <circle cx="32" cy="10" r="2.6" fill="#59b8ff" opacity=".6"/><circle cx="32" cy="20" r="2.6" fill="#59b8ff" opacity=".6"/><circle cx="32" cy="30" r="2.6" fill="#59b8ff" opacity=".6"/>
+            <path d="M11 20h5.6M23.4 19.2 29.4 11M23.4 20h6M23.4 20.8 29.4 29" stroke="#59b8ff" stroke-width="1.1" opacity=".8"/>
+          </svg>
+        </div>
+        <h3>Pentest de API</h3>
+        <p>Avaliação dos canais que conectam sistemas, aplicações e parceiros: autorização, arquitetura de integração e proteção da camada de dados.</p>
+        <div class="svc-card__tags"><span>REST</span><span>Autorização</span><span>Fluxos críticos</span></div>
+        <span class="svc-card__foot">Ver serviço <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="svc-card reveal" href="/servicos/pentest-infraestrutura" style="--reveal-delay:140ms">
+        <div class="svc-card__top">
+          <span class="svc-card__num">03</span>
+          <svg class="svc-card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="6" y="7" width="28" height="7" rx="2" stroke="#59b8ff" stroke-width="1.2" opacity=".6"/>
+            <rect x="6" y="17" width="28" height="7" rx="2" stroke="#59b8ff" stroke-width="1.2" opacity=".6"/>
+            <rect x="6" y="27" width="28" height="7" rx="2" stroke="#59b8ff" stroke-width="1.2" opacity=".6"/>
+            <circle cx="10.5" cy="10.5" r="1.4" fill="#59b8ff"/><circle cx="10.5" cy="20.5" r="1.4" fill="#246bfd"/><circle cx="10.5" cy="30.5" r="1.4" fill="#59b8ff"/>
+            <path d="M28 20.5h4M28 30.5h4" stroke="#246bfd" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3>Pentest de Infraestrutura</h3>
+        <p>Redes, servidores e perímetros interno e externo avaliados sob o comportamento de um agente malicioso, incluindo movimentação lateral.</p>
+        <div class="svc-card__tags"><span>Perímetro</span><span>Rede interna</span><span>Lateral</span></div>
+        <span class="svc-card__foot">Ver serviço <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="svc-card reveal" href="/servicos/pentest-cloud">
+        <div class="svc-card__top">
+          <span class="svc-card__num">04</span>
+          <svg class="svc-card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="20" cy="9" r="3.2" fill="#246bfd"/>
+            <circle cx="8"  cy="30" r="2.8" fill="#59b8ff" opacity=".75"/><circle cx="20" cy="30" r="2.8" fill="#59b8ff" opacity=".75"/><circle cx="32" cy="30" r="2.8" fill="#59b8ff" opacity=".75"/>
+            <path d="M20 12.2v7M20 19.2h-12v8M20 19.2h12v8M20 19.2v8" stroke="#59b8ff" stroke-width="1.1" opacity=".7"/>
+          </svg>
+        </div>
+        <h3>Pentest Cloud</h3>
+        <p>Auditoria de ambientes em AWS, Azure e GCP: isolamento de dados, acessos, armazenamento e riscos de configuração e arquitetura.</p>
+        <div class="svc-card__tags"><span>IAM</span><span>Storage</span><span>Configuração</span></div>
+        <span class="svc-card__foot">Ver serviço <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="svc-card reveal" href="/servicos/pentest-mobile" style="--reveal-delay:70ms">
+        <div class="svc-card__top">
+          <span class="svc-card__num">05</span>
+          <svg class="svc-card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="12" y="5" width="16" height="30" rx="3" stroke="#59b8ff" stroke-width="1.2" opacity=".6"/>
+            <path d="M17 8.5h6" stroke="#59b8ff" stroke-width="1.2"/>
+            <circle cx="20" cy="18" r="2.6" fill="#246bfd"/>
+            <circle cx="20" cy="26" r="1.6" fill="#59b8ff"/><circle cx="15" cy="22" r="1.3" fill="#59b8ff" opacity=".6"/><circle cx="25" cy="22" r="1.3" fill="#59b8ff" opacity=".6"/>
+            <path d="M20 20.6v3.8M18.6 19.4 16 21M21.4 19.4 24 21" stroke="#59b8ff" stroke-width="1" opacity=".7"/>
+          </svg>
+        </div>
+        <h3>Pentest Mobile</h3>
+        <p>Aplicativos iOS e Android submetidos a análise estática e dinâmica, para impedir que o app se torne um vetor de entrada.</p>
+        <div class="svc-card__tags"><span>iOS</span><span>Android</span><span>Estática + dinâmica</span></div>
+        <span class="svc-card__foot">Ver serviço <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="svc-card reveal" href="/servicos/phishing" style="--reveal-delay:140ms">
+        <div class="svc-card__top">
+          <span class="svc-card__num">06</span>
+          <svg class="svc-card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="5" y="11" width="30" height="19" rx="3" stroke="#59b8ff" stroke-width="1.2" opacity=".6"/>
+            <path d="M5.8 12.6 20 22l14.2-9.4" stroke="#59b8ff" stroke-width="1.2" opacity=".7"/>
+            <circle cx="20" cy="22" r="2.6" fill="#246bfd"/>
+            <circle cx="31" cy="9" r="3.4" fill="#59b8ff" opacity=".22"/><circle cx="31" cy="9" r="1.6" fill="#59b8ff"/>
+          </svg>
+        </div>
+        <h3>Campanhas de Phishing</h3>
+        <p>Simulações de engenharia social para medir exposição humana, identificar padrões de comprometimento e apoiar conscientização.</p>
+        <div class="svc-card__tags"><span>Engenharia social</span><span>Métricas</span><span>Conscientização</span></div>
+        <span class="svc-card__foot">Ver serviço <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="svc-card svc-card--wide reveal" href="/servicos/red-team">
+        <div class="svc-card__top">
+          <span class="svc-card__num">07</span>
+          <svg class="svc-card__glyph" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="6"  cy="20" r="2.4" fill="#59b8ff" opacity=".55"/>
+            <circle cx="15" cy="12" r="2.4" fill="#59b8ff" opacity=".7"/>
+            <circle cx="15" cy="28" r="2.4" fill="#59b8ff" opacity=".7"/>
+            <circle cx="25" cy="20" r="2.8" fill="#246bfd"/>
+            <circle cx="34" cy="20" r="3.4" fill="#59b8ff"/>
+            <path d="M8.2 19 13 13.4M8.2 21 13 26.6M17 13.2l6 5.4M17 26.8l6-5.4M27.8 20h3" stroke="#59b8ff" stroke-width="1.1" opacity=".75"/>
+          </svg>
+        </div>
+        <h3>Operações de Red Team</h3>
+        <p>Simulação completa de um adversário contra pessoas, processos, tecnologia e controles de detecção — avaliando não só a exposição, mas a resposta.</p>
+        <div class="svc-card__tags"><span>Cadeia de ataque</span><span>Detecção</span><span>Resposta</span></div>
+        <span class="svc-card__foot">Ver serviço <span aria-hidden="true">→</span></span>
+      </a>
+
+      <div class="svc-cta reveal" style="--reveal-delay:70ms">
+        <p class="eyebrow">Escopo sob medida</p>
+        <h3>Não trabalhamos com um pacote único para todos.</h3>
+        <p>O escopo considera porte, maturidade, superfície, tecnologias e os riscos que realmente importam para o seu negócio.</p>
+        <a class="link-arrow" href="/servicos">Ver o mapa completo <span aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 04 · COMO PENSAMOS ============================ -->
+<section class="section theme-deep manifesto aura" aria-labelledby="h-mentalidade">
+  <div class="container">
+    <div class="manifesto__head">
+      <div>
+        <p class="chapter-index reveal" style="color:#7f9ad0">03 — Como pensamos</p>
+        <h2 id="h-mentalidade" class="manifesto__title reveal" style="--reveal-delay:60ms">
+          Pensamos como quem tenta invadir.<br>
+          <span>Trabalhamos para quem precisa impedir.</span>
+        </h2>
+      </div>
+
+      <figure class="path-fig reveal" style="--reveal-delay:200ms" data-diagram>
+        <svg viewBox="0 0 420 300" role="img" aria-labelledby="path-title">
+          <title id="path-title">Ilustração conceitual: entre muitos ativos, o adversário precisa de um único caminho viável até o objetivo</title>
+
+          <g class="path-noise">
+            <circle cx="46"  cy="52"  r="3"/><circle cx="122" cy="30"  r="2.4"/><circle cx="206" cy="58" r="2.4"/>
+            <circle cx="286" cy="34"  r="3"/><circle cx="372" cy="66"  r="2.4"/><circle cx="88"  cy="120" r="2.4"/>
+            <circle cx="168" cy="108" r="3"/><circle cx="252" cy="132" r="2.4"/><circle cx="342" cy="112" r="2.4"/>
+            <circle cx="40"  cy="188" r="2.4"/><circle cx="130" cy="196" r="3"/><circle cx="214" cy="178" r="2.4"/>
+            <circle cx="300" cy="204" r="2.4"/><circle cx="380" cy="182" r="3"/><circle cx="74"  cy="258" r="2.4"/>
+            <circle cx="164" cy="272" r="2.4"/><circle cx="248" cy="252" r="3"/><circle cx="332" cy="268" r="2.4"/>
+          </g>
+
+          <path class="path-line" d="M46 52 L168 108 L214 178 L300 204 L332 268"/>
+
+          <g class="path-hot">
+            <circle cx="46"  cy="52"  r="5.5" style="--i:0"/>
+            <circle cx="168" cy="108" r="5.5" style="--i:1"/>
+            <circle cx="214" cy="178" r="5.5" style="--i:2"/>
+            <circle cx="300" cy="204" r="5.5" style="--i:3"/>
+            <circle cx="332" cy="268" r="7"   style="--i:4"/>
+          </g>
+
+          <text class="path-cap" x="46"  y="34">exposição</text>
+          <text class="path-cap" x="352" y="272">objetivo</text>
+        </svg>
+        <figcaption>Ilustração conceitual. Nenhuma empresa precisa fechar todos os caminhos possíveis — precisa saber quais realmente existem.</figcaption>
+      </figure>
+    </div>
+
+    <div class="manifesto__grid">
+      <div class="reveal" style="--reveal-delay:140ms">
+        <h3>Ataque real, não checklist</h3>
+        <p>Reproduzimos técnicas, comportamentos e estratégias de adversários reais, sempre dentro de um escopo ético e autorizado. Scanners apoiam o trabalho; não o substituem.</p>
+      </div>
+      <div class="reveal" style="--reveal-delay:210ms">
+        <h3>Impacto antes de severidade</h3>
+        <p>Nem toda vulnerabilidade pesa igual. Cada achado é priorizado pelo contexto da operação: risco técnico, operacional, financeiro e reputacional.</p>
+      </div>
+      <div class="reveal" style="--reveal-delay:280ms">
+        <h3>Evidência acima de suposição</h3>
+        <p>Toda afirmação vem acompanhada de prova reproduzível. Se não conseguimos demonstrar, não reportamos como risco confirmado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 05 · METODOLOGIA ============================ -->
+<section class="section theme-light dotfield dotfield--light" aria-labelledby="h-metodologia">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="chapter-index reveal">04 — Metodologia</p>
+        <h2 id="h-metodologia" class="reveal" style="--reveal-delay:60ms">Cinco etapas, do primeiro mapeamento à correção validada.</h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <p style="margin-top:0">
+          O trabalho não termina na entrega do relatório. Ele termina quando a
+          correção é implementada e nós confirmamos, testando de novo, que o
+          caminho de ataque deixou de existir.
+        </p>
+        <a class="link-arrow" href="/metodologia" style="margin-top:1.2rem">Ver a metodologia completa <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <ol class="track reveal" style="--reveal-delay:200ms" data-diagram>
+      <li class="track__step" style="--i:0">
+        <span class="track__dot" aria-hidden="true"></span>
+        <span class="track__n">Etapa 01</span>
+        <h3>Reconhecimento</h3>
+        <p>Mapeamento da superfície de ataque real da empresa — inclusive o que não estava no inventário.</p>
+      </li>
+      <li class="track__step" style="--i:1">
+        <span class="track__dot" aria-hidden="true"></span>
+        <span class="track__n">Etapa 02</span>
+        <h3>Exploração</h3>
+        <p>Simulação de ataques reais, manuais e direcionados contra os alvos priorizados no escopo.</p>
+      </li>
+      <li class="track__step" style="--i:2">
+        <span class="track__dot" aria-hidden="true"></span>
+        <span class="track__n">Etapa 03</span>
+        <h3>Escalada &amp; Impacto</h3>
+        <p>Demonstração do impacto real de negócio: até onde a falha leva e o que ela expõe.</p>
+      </li>
+      <li class="track__step" style="--i:3">
+        <span class="track__dot" aria-hidden="true"></span>
+        <span class="track__n">Etapa 04</span>
+        <h3>Relatório &amp; Remediação</h3>
+        <p>Evidências claras, priorizadas por risco, acompanhadas de um plano de correção executável.</p>
+      </li>
+      <li class="track__step" style="--i:4">
+        <span class="track__dot" aria-hidden="true"></span>
+        <span class="track__n">Etapa 05</span>
+        <h3>Reteste</h3>
+        <p>Validação das correções e dos controles implementados, fechando o ciclo com prova.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ 06 · O QUE VOCÊ RECEBE ============================ -->
+<section class="section theme-paper" aria-labelledby="h-entregaveis">
+  <div class="container">
+    <div class="deliver">
+      <div class="deliver__intro">
+        <p class="chapter-index reveal">05 — O que você recebe</p>
+        <h2 id="h-entregaveis" class="reveal" style="--reveal-delay:60ms">Um relatório que sustenta decisão, não apenas documentação.</h2>
+        <p class="reveal" style="--reveal-delay:140ms">
+          A entrega precisa servir a duas audiências ao mesmo tempo: quem decide
+          orçamento e prioridade, e quem vai efetivamente corrigir. Por isso ela
+          é construída em camadas.
+        </p>
+        <a class="btn reveal" href="/contato" style="--reveal-delay:210ms;margin-top:var(--sp-6)">Solicitar avaliação <span class="arw" aria-hidden="true">→</span></a>
+      </div>
+
+      <ul class="deliver__list">
+        <li class="reveal"><span class="deliver__k">01</span><div><h3>Leitura executiva</h3><p>O cenário de exposição traduzido para linguagem de negócio, sem exigir contexto técnico do leitor.</p></div></li>
+        <li class="reveal" style="--reveal-delay:60ms"><span class="deliver__k">02</span><div><h3>Relatório técnico</h3><p>Descrição detalhada de cada achado, com o caminho percorrido e as condições necessárias para reproduzi-lo.</p></div></li>
+        <li class="reveal" style="--reveal-delay:120ms"><span class="deliver__k">03</span><div><h3>Evidências e provas de conceito</h3><p>Demonstração concreta da exploração, para que o achado não dependa de interpretação.</p></div></li>
+        <li class="reveal" style="--reveal-delay:180ms"><span class="deliver__k">04</span><div><h3>Priorização por impacto</h3><p>Ordenação das descobertas segundo o risco real para a operação — o que corrigir primeiro e por quê.</p></div></li>
+        <li class="reveal" style="--reveal-delay:240ms"><span class="deliver__k">05</span><div><h3>Plano de correção</h3><p>Recomendações práticas de remediação, orientadas ao seu contexto técnico e ao seu ritmo de entrega.</p></div></li>
+        <li class="reveal" style="--reveal-delay:300ms"><span class="deliver__k">06</span><div><h3>Reteste das correções</h3><p>Nova validação após a implementação, confirmando que o risco foi efetivamente eliminado.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 07 · CAPACIDADE TÉCNICA ============================ -->
+<section class="section theme-dark" aria-labelledby="h-credenciais">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="chapter-index reveal">06 — Capacidade técnica</p>
+        <h2 id="h-credenciais" class="reveal" style="--reveal-delay:60ms">Certificações ofensivas reconhecidas, sustentando o trabalho de campo.</h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <p style="margin-top:0">
+          A equipe reúne, de forma coletiva, certificações práticas em segurança
+          ofensiva e Red Team. Elas não substituem experiência — indicam a base
+          metodológica sobre a qual cada teste é conduzido.
+        </p>
+      </div>
+    </div>
+
+    <div class="cred-grid reveal" style="--reveal-delay:200ms;margin-top:var(--sp-8)">
+      <div class="cred"><strong>OSCP</strong><span>Offensive Security Certified Professional</span></div>
+      <div class="cred"><strong>CEH</strong><span>Certified Ethical Hacker</span></div>
+      <div class="cred"><strong>eWPTX</strong><span>Web Application Penetration Tester eXtreme</span></div>
+      <div class="cred"><strong>DCPT</strong><span>Desec Certified Penetration Tester</span></div>
+      <div class="cred"><strong>CRTO</strong><span>Certified Red Team Operator</span></div>
+      <div class="cred"><strong>CRTE</strong><span>Certified Red Team Expert</span></div>
+      <div class="cred"><strong>CRTM</strong><span>Certified Red Team Master</span></div>
+      <div class="cred"><strong>CRTA</strong><span>Certified Red Team Analyst</span></div>
+    </div>
+    <p class="cred-note reveal" style="--reveal-delay:260ms">
+      Certificações mantidas coletivamente pela equipe. A composição do time
+      alocado varia conforme o escopo e é informada na proposta.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ 08 · QUANDO CHAMAR ============================ -->
+<section class="section theme-ink dotfield" aria-labelledby="h-quando">
+  <div class="container">
+    <div class="section-head">
+      <p class="chapter-index reveal">07 — Quando faz sentido nos chamar</p>
+      <h2 id="h-quando" class="reveal" style="--reveal-delay:60ms">Você deveria conversar com a Infinity quando estiver…</h2>
+    </div>
+
+    <ul class="when-list" style="margin-top:var(--sp-7)">
+      <li class="reveal"><span>01</span><p>Colocando uma aplicação nova em produção e precisando validar antes da exposição pública.</p></li>
+      <li class="reveal" style="--reveal-delay:50ms"><span>02</span><p>Lançando ou reestruturando uma API que conecta parceiros, clientes ou sistemas internos.</p></li>
+      <li class="reveal" style="--reveal-delay:100ms"><span>03</span><p>Preparando uma auditoria, um processo de conformidade ou uma due diligence técnica.</p></li>
+      <li class="reveal" style="--reveal-delay:150ms"><span>04</span><p>Expandindo infraestrutura em nuvem e sem certeza sobre isolamento, permissões e configuração.</p></li>
+      <li class="reveal" style="--reveal-delay:200ms"><span>05</span><p>Vendendo para clientes enterprise que exigem comprovação de maturidade de segurança.</p></li>
+      <li class="reveal" style="--reveal-delay:250ms"><span>06</span><p>Implantando novos controles e querendo confirmar que eles funcionam sob ataque real.</p></li>
+      <li class="reveal" style="--reveal-delay:300ms"><span>07</span><p>Preocupado com a exposição externa da empresa e sem visibilidade sobre o que está publicado.</p></li>
+      <li class="reveal" style="--reveal-delay:350ms"><span>08</span><p>Querendo saber não só se um ataque é possível, mas se a sua equipe conseguiria detectá-lo.</p></li>
+    </ul>
+
+    <div class="icp reveal" style="--reveal-delay:200ms">
+      <p class="eyebrow">Perfil de cliente</p>
+      <p>
+        Nossa atuação é direcionada a empresas de médio e grande porte com alta
+        dependência de tecnologia, dados e operações digitais — instituições
+        financeiras e fintechs, empresas de tecnologia e SaaS, organizações que
+        armazenam dados sensíveis, negócios regulados ou sujeitos a auditorias, e
+        empresas em expansão com alta maturidade digital.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 09 · CTA ============================ -->
+<section class="cta-band" aria-labelledby="h-cta">
+  <div class="container cta-band__inner">
+    <p class="eyebrow reveal" style="justify-content:center">Próximo passo</p>
+    <h2 id="h-cta" class="reveal" style="--reveal-delay:60ms;margin-top:var(--sp-4)">
+      Vamos testar suas defesas antes que alguém faça isso por você.
+    </h2>
+    <p class="reveal" style="--reveal-delay:140ms">
+      A conversa inicial serve para entender sua superfície, seus riscos
+      prioritários e o formato de teste que faz sentido. Sem compromisso e sem
+      necessidade de material técnico preparado.
+    </p>
+    <div class="btn-row reveal" style="--reveal-delay:210ms">
+      <a class="btn" href="/contato">Solicitar avaliação <span class="arw" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="/servicos">Ver todos os serviços</a>
+    </div>
+    <p class="cta-band__meta reveal" style="--reveal-delay:280ms">
+      <span>Escopo sob medida</span><span>Testes autorizados</span><span>Confidencialidade</span><span>Fortaleza — CE</span>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ RODAPÉ ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="/assets/img/logo-lockup-dark.svg" alt="Infinity Security" width="136" height="26">
+        <p>Segurança ofensiva especializada. Transformamos risco invisível em evidência, prioridade e correção verificada.</p>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Serviços</h2>
+        <ul>
+          <li><a href="/servicos/pentest-web">Pentest Web</a></li>
+          <li><a href="/servicos/pentest-api">Pentest de API</a></li>
+          <li><a href="/servicos/pentest-infraestrutura">Infraestrutura</a></li>
+          <li><a href="/servicos/pentest-cloud">Cloud</a></li>
+          <li><a href="/servicos/pentest-mobile">Mobile</a></li>
+          <li><a href="/servicos/phishing">Phishing</a></li>
+          <li><a href="/servicos/red-team">Red Team</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Empresa</h2>
+        <ul>
+          <li><a href="/servicos">Todos os serviços</a></li>
+          <li><a href="/metodologia">Metodologia</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="/contato">Contato</a></li>
+          <li><a href="/.well-known/security.txt">security.txt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Contato</h2>
+        <address>
+          <a href="https://wa.me/5585999243465" rel="noopener">WhatsApp +55 85 99924-3465</a><br>
+          Rua José Alencar Ramos, 385 — Sala 3<br>
+          Eng. Luciano Cavalcante<br>
+          Fortaleza — CE
+        </address>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> Infinity Security. Todos os direitos reservados.</span>
+      <span>CNPJ 68.537.755/0001-63</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/shield-points.js" defer></script>
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

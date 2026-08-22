@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operações de Red Team | Infinity Security</title>
+<meta name="description" content="Simulação completa de adversário contra pessoas, processos, tecnologia e controles de detecção, avaliando não apenas a exposição, mas a capacidade de resposta da organização.">
+<link rel="canonical" href="https://infinitysecurity.com.br/servicos/red-team">
+<meta name="theme-color" content="#08111f">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Infinity Security">
+<meta property="og:title" content="Operações de Red Team | Infinity Security">
+<meta property="og:description" content="Simulação completa de adversário contra pessoas, processos, tecnologia e controles de detecção, avaliando não apenas a exposição, mas a capacidade de resposta da organização.">
+<meta property="og:url" content="https://infinitysecurity.com.br/servicos/red-team">
+<meta property="og:image" content="https://infinitysecurity.com.br/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Operações de Red Team | Infinity Security">
+<meta name="twitter:description" content="Simulação completa de adversário contra pessoas, processos, tecnologia e controles de detecção, avaliando não apenas a exposição, mas a capacidade de resposta da organização.">
+<meta name="twitter:image" content="https://infinitysecurity.com.br/assets/img/og-image.png">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+
+<link rel="preload" href="/assets/fonts/hanken-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>document.documentElement.classList.remove('no-js');</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Service","name":"Operações de Red Team","serviceType":"Teste de segurança ofensiva","url":"https://infinitysecurity.com.br/servicos/red-team",
+"description":"Simulação completa de adversário contra pessoas, processos, tecnologia e controles de detecção, avaliando não apenas a exposição, mas a capacidade de resposta da organização.",
+"provider":{"@type":"Organization","name":"Infinity Security","url":"https://infinitysecurity.com.br/"},
+"areaServed":"BR"},
+{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qual a diferença entre Red Team e pentest?","acceptedAnswer":{"@type":"Answer","text":"O pentest busca cobertura: encontrar o máximo de falhas relevantes em um alvo definido, dentro do tempo acordado. O Red Team busca um objetivo: chegar a um resultado específico da forma que um adversário chegaria, medindo também a detecção. São complementares — e o pentest costuma vir antes."}}, {"@type":"Question","name":"A equipe interna deve saber que a operação está acontecendo?","acceptedAnswer":{"@type":"Answer","text":"Normalmente não, porque é isso que permite medir a detecção real. Existe sempre um grupo restrito de pessoas autorizadoras que conhece a operação, para garantir controle, segurança e critérios de parada."}}, {"@type":"Question","name":"Isso não é arriscado para a operação da empresa?","acceptedAnswer":{"@type":"Answer","text":"A operação tem escopo, limites e regras de engajamento definidos por escrito, com ações destrutivas excluídas e critérios de parada acordados. O objetivo é demonstrar o caminho, não causar dano."}}, {"@type":"Question","name":"Faz sentido para uma empresa que nunca fez pentest?","acceptedAnswer":{"@type":"Answer","text":"Em geral, não. Se a superfície ainda tem falhas evidentes, um pentest entrega mais valor por um custo menor. O Red Team faz mais sentido quando o básico já está coberto e a pergunta passou a ser sobre resposta."}}]}]}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="nav" data-nav>
+  <div class="container container--wide nav__inner">
+    <a class="nav__logo" href="/" aria-label="Infinity Security — página inicial">
+      <img src="/assets/img/logo-lockup-dark.svg" alt="Infinity Security" width="136" height="26">
+    </a>
+
+    <nav aria-label="Principal">
+      <ul class="nav__menu">
+        <li class="nav__group">
+          <a class="nav__link" href="/servicos" aria-current="page">
+            Serviços
+            <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </a>
+          <div class="nav__panel">
+            <ul class="nav__panel-grid">
+              <li><a class="nav__panel-link" href="/servicos/pentest-web"><strong>Pentest Web</strong><span>Aplicações, portais e regras de negócio</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-api"><strong>Pentest de API</strong><span>Integrações, autorização e fluxos críticos</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-infraestrutura"><strong>Pentest de Infraestrutura</strong><span>Perímetro, redes internas e servidores</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-cloud"><strong>Pentest Cloud</strong><span>AWS, Azure e GCP: identidade e configuração</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-mobile"><strong>Pentest Mobile</strong><span>iOS e Android, análise estática e dinâmica</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/phishing"><strong>Campanhas de Phishing</strong><span>Resiliência humana a engenharia social</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/red-team"><strong>Operações de Red Team</strong><span>Pessoas, processos, tecnologia e detecção</span></a></li>
+            </ul>
+            <div class="nav__panel-foot">
+              <span>07 superfícies cobertas</span>
+              <a class="link-arrow" href="/servicos">Ver todos os serviços <span class="arw" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </li>
+        <li><a class="nav__link" href="/metodologia">Metodologia</a></li>
+        <li><a class="nav__link" href="/sobre">Sobre</a></li>
+        <li><a class="nav__link" href="/contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn" href="/contato">Solicitar avaliação</a>
+      <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-drawer" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav__drawer" id="nav-drawer" data-nav-drawer>
+  <nav aria-label="Menu mobile">
+    <ul class="nav__drawer-main">
+      <li>
+        <a href="/servicos">Serviços <span aria-hidden="true">→</span></a>
+        <ul class="nav__drawer-sub">
+          <li><a href="/servicos/pentest-web">Pentest Web</a></li>
+          <li><a href="/servicos/pentest-api">Pentest de API</a></li>
+          <li><a href="/servicos/pentest-infraestrutura">Pentest de Infraestrutura</a></li>
+          <li><a href="/servicos/pentest-cloud">Pentest Cloud</a></li>
+          <li><a href="/servicos/pentest-mobile">Pentest Mobile</a></li>
+          <li><a href="/servicos/phishing">Campanhas de Phishing</a></li>
+          <li><a href="/servicos/red-team">Operações de Red Team</a></li>
+        </ul>
+      </li>
+      <li><a href="/metodologia">Metodologia <span aria-hidden="true">→</span></a></li>
+      <li><a href="/sobre">Sobre <span aria-hidden="true">→</span></a></li>
+      <li><a href="/contato">Contato <span aria-hidden="true">→</span></a></li>
+    </ul>
+    <a class="btn" href="/contato">Solicitar avaliação</a>
+    <p class="nav__drawer-meta">
+      WhatsApp +55 85 99924-3465<br>
+      Fortaleza — CE
+    </p>
+  </nav>
+</div>
+
+<main id="conteudo">
+
+<section class="page-hero">
+  <div class="container container--wide">
+    <nav class="crumbs" aria-label="Trilha de navegação"><ol><li><a href="/">Início</a></li><li><a href="/servicos">Serviços</a></li><li aria-current="page">Operações de Red Team</li></ol></nav><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://infinitysecurity.com.br/"}, {"@type":"ListItem","position":2,"name":"Serviços","item":"https://infinitysecurity.com.br/servicos"}, {"@type":"ListItem","position":3,"name":"Operações de Red Team"}]}</script>
+    <div class="page-hero__grid">
+      <div>
+        <p class="eyebrow enter">Serviço 07 / 07 — Segurança ofensiva</p>
+        <h1 class="enter" style="--reveal-delay:60ms">Operações de Red Team</h1>
+        <p class="page-hero__q enter" style="--reveal-delay:110ms">Um ataque real aconteceria sem que ninguém percebesse?</p>
+        <p class="page-hero__lead enter" style="--reveal-delay:170ms">Simulação de ataques completos contra a organização — pessoas, processos, tecnologia, detecções e controles — para avaliar como a empresa responde ao longo de uma cadeia de ataque, e não apenas se uma falha existe.</p>
+        <div class="page-hero__cta enter" style="--reveal-delay:210ms">
+          <a class="btn" href="/contato">Solicitar avaliação <span class="arw" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="/servicos">Ver todos os serviços</a>
+        </div>
+      </div>
+      <aside class="page-hero__aside enter" style="--reveal-delay:280ms">
+        <dl><dt>Escopo</dt><dd>Pessoas, processos, tecnologia e detecção</dd><dt>Objetivo</dt><dd>Avaliar exposição e capacidade de resposta</dd><dt>Diferença</dt><dd>Orientado a objetivo, não a cobertura</dd></dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section theme-ink dotfield" aria-labelledby="h-oque">
+  <div class="container">
+    <div class="split split--sticky">
+      <div class="split__aside">
+        <p class="chapter-index reveal">01 — O que é</p>
+        <h2 id="h-oque" class="reveal" style="--reveal-delay:60ms">O que este teste avalia</h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:120ms">
+        <div class="prose"><p>Um pentest pergunta se existe uma falha explorável em um alvo definido. Um Red Team pergunta outra coisa: partindo de fora, com um objetivo acordado, é possível chegar até lá — e em que momento alguém percebe?</p><p>Por isso a operação é orientada a objetivo e não a cobertura. Ela combina os vetores disponíveis, incluindo o humano, e mede o que os controles de detecção e o processo de resposta efetivamente fazem enquanto a cadeia de ataque avança. O produto final é tão sobre a sua capacidade de reagir quanto sobre a sua exposição.</p></div>
+        <h3 style="margin-top:var(--sp-8);font-size:var(--fs-h4)">Quando faz sentido</h3>
+        <ul class="when-list when-list--tight" style="margin-top:var(--sp-5)"><li><span>01</span><p>Quando os testes pontuais já são rotina e a dúvida passou a ser sobre detecção e resposta.</p></li><li><span>02</span><p>Depois de investir em monitoramento, e para confirmar que ele produz alerta acionável.</p></li><li><span>03</span><p>Quando a empresa precisa treinar a resposta a incidentes em uma situação realista e controlada.</p></li><li><span>04</span><p>Quando a preocupação não é mais uma vulnerabilidade específica, mas um adversário determinado.</p></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section theme-dark" aria-labelledby="h-riscos">
+  <div class="container">
+    <div class="section-head">
+      <p class="chapter-index reveal">02 — Riscos avaliados</p>
+      <h2 id="h-riscos" class="reveal" style="--reveal-delay:60ms">O que costuma estar quebrado aqui</h2>
+      <p class="reveal" style="--reveal-delay:140ms">
+        Nem todo achado aparece em todo ambiente. Estes são os padrões que a avaliação procura
+        deliberadamente, porque são os que mais frequentemente sustentam um caminho completo até o impacto.
+      </p>
+    </div>
+    <div class="risks" style="margin-top:var(--sp-8)"><article class="risk reveal"><span class="risk__k">R01</span><h3>Caminho completo até o objetivo</h3><p>Combinação de falhas individualmente pequenas que, encadeadas, levam a um impacto grande.</p></article><article class="risk reveal"><span class="risk__k">R02</span><h3>Cegueira de detecção</h3><p>Etapas inteiras da cadeia que não geram alerta, ou geram um alerta que ninguém trata.</p></article><article class="risk reveal"><span class="risk__k">R03</span><h3>Alerta sem resposta</h3><p>Eventos corretamente registrados que não se convertem em ação dentro de um tempo útil.</p></article><article class="risk reveal"><span class="risk__k">R04</span><h3>Vetor humano como entrada</h3><p>Acesso inicial obtido por engenharia social, contornando controles técnicos bem configurados.</p></article><article class="risk reveal"><span class="risk__k">R05</span><h3>Persistência não percebida</h3><p>Presença mantida no ambiente por período prolongado sem ser identificada.</p></article><article class="risk reveal"><span class="risk__k">R06</span><h3>Processo que falha sob pressão</h3><p>Comunicação, escalonamento e decisão que funcionam no papel mas travam durante o evento real.</p></article></div>
+  </div>
+</section>
+
+<section class="section theme-ink" aria-labelledby="h-diagrama">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="chapter-index reveal">03 — Superfície</p>
+        <h2 id="h-diagrama" class="reveal" style="--reveal-delay:60ms">Como enxergamos esse domínio</h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <p style="margin-top:0">
+          Antes de testar, mapeamos. O diagrama abaixo mostra a estrutura que orienta o trabalho
+          e onde os pontos de verificação são posicionados.
+        </p>
+      </div>
+    </div>
+    <div class="reveal" style="--reveal-delay:180ms;margin-top:var(--sp-8)">
+      <figure class="dgm " data-diagram>
+  <div class="dgm__scroll">
+    <svg viewBox="0 0 900 340" role="img" aria-labelledby="dgm-title" preserveAspectRatio="xMidYMid meet">
+      <title id="dgm-title">Cadeia de ataque simulada e a linha de detecção correspondente</title>
+    <g class="dgm-row" style="--i:0">
+      <rect class="dgm-gate" x="24" y="86" width="132" height="132" rx="9"/>
+      <text class="dgm-idx" x="40" y="112">01</text>
+      <text class="dgm-gname" x="40" y="140">Reconhecimento</text>
+      <foreignObject x="40" y="150" width="102" height="62">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="dgm-fo dgm-fo--sm">superfície, pessoas e tecnologia</div>
+      </foreignObject>
+      <circle class="dgm-probe" cx="90" cy="86" r="4.5"/>
+      <path class="dgm-detect" d="M90 218 V 282"/>
+      <circle class="dgm-detect-dot" cx="90" cy="282" r="5"/>
+    </g>
+    <g class="dgm-row" style="--i:1">
+      <rect class="dgm-gate" x="169" y="86" width="132" height="132" rx="9"/>
+      <text class="dgm-idx" x="185" y="112">02</text>
+      <text class="dgm-gname" x="185" y="140">Acesso inicial</text>
+      <foreignObject x="185" y="150" width="102" height="62">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="dgm-fo dgm-fo--sm">o primeiro ponto de apoio</div>
+      </foreignObject>
+      <circle class="dgm-probe" cx="235" cy="86" r="4.5"/>
+      <path class="dgm-detect" d="M235 218 V 282"/>
+      <circle class="dgm-detect-dot" cx="235" cy="282" r="5"/>
+    </g>
+    <g class="dgm-row" style="--i:2">
+      <rect class="dgm-gate" x="314" y="86" width="132" height="132" rx="9"/>
+      <text class="dgm-idx" x="330" y="112">03</text>
+      <text class="dgm-gname" x="330" y="140">Persistência</text>
+      <foreignObject x="330" y="150" width="102" height="62">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="dgm-fo dgm-fo--sm">manter presença sem ser notado</div>
+      </foreignObject>
+      <circle class="dgm-probe" cx="380" cy="86" r="4.5"/>
+      <path class="dgm-detect" d="M380 218 V 282"/>
+      <circle class="dgm-detect-dot" cx="380" cy="282" r="5"/>
+    </g>
+    <g class="dgm-row" style="--i:3">
+      <rect class="dgm-gate" x="459" y="86" width="132" height="132" rx="9"/>
+      <text class="dgm-idx" x="475" y="112">04</text>
+      <text class="dgm-gname" x="475" y="140">Escalada</text>
+      <foreignObject x="475" y="150" width="102" height="62">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="dgm-fo dgm-fo--sm">de usuário comum a privilégio alto</div>
+      </foreignObject>
+      <circle class="dgm-probe" cx="525" cy="86" r="4.5"/>
+      <path class="dgm-detect" d="M525 218 V 282"/>
+      <circle class="dgm-detect-dot" cx="525" cy="282" r="5"/>
+    </g>
+    <g class="dgm-row" style="--i:4">
+      <rect class="dgm-gate" x="604" y="86" width="132" height="132" rx="9"/>
+      <text class="dgm-idx" x="620" y="112">05</text>
+      <text class="dgm-gname" x="620" y="140">Movimentação</text>
+      <foreignObject x="620" y="150" width="102" height="62">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="dgm-fo dgm-fo--sm">atravessar a rede até o alvo</div>
+      </foreignObject>
+      <circle class="dgm-probe" cx="670" cy="86" r="4.5"/>
+      <path class="dgm-detect" d="M670 218 V 282"/>
+      <circle class="dgm-detect-dot" cx="670" cy="282" r="5"/>
+    </g>
+    <g class="dgm-row" style="--i:5">
+      <rect class="dgm-gate" x="749" y="86" width="132" height="132" rx="9"/>
+      <text class="dgm-idx" x="765" y="112">06</text>
+      <text class="dgm-gname" x="765" y="140">Objetivo</text>
+      <foreignObject x="765" y="150" width="102" height="62">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="dgm-fo dgm-fo--sm">o impacto acordado no escopo</div>
+      </foreignObject>
+      <circle class="dgm-probe" cx="815" cy="86" r="4.5"/>
+      <path class="dgm-detect" d="M815 218 V 282"/>
+      <circle class="dgm-detect-dot" cx="815" cy="282" r="5"/>
+    </g>
+    <path class="dgm-flow" d="M156 152 H 169"/>
+    <path class="dgm-flow" d="M301 152 H 314"/>
+    <path class="dgm-flow" d="M446 152 H 459"/>
+    <path class="dgm-flow" d="M591 152 H 604"/>
+    <path class="dgm-flow" d="M736 152 H 749"/>
+    <path class="dgm-rail" d="M24 282 H 880"/>
+    <text class="dgm-axis" x="24" y="58">CADEIA DE ATAQUE SIMULADA</text>
+    <text class="dgm-axis dgm-axis--warm" x="24" y="316">LINHA DE DETECÇÃO — EM QUAL ETAPA A SUA EQUIPE PERCEBE?</text>
+    </svg>
+  </div>
+  <figcaption>Um Red Team não pergunta apenas se o ataque é possível. Pergunta em que ponto ele deixa de ser invisível — e o que acontece depois disso.</figcaption>
+</figure>
+    </div>
+  </div>
+</section>
+
+<section class="section theme-light dotfield dotfield--light" aria-labelledby="h-testamos">
+  <div class="container">
+    <div class="split">
+      <div class="split__aside">
+        <p class="chapter-index reveal">04 — O que testamos</p>
+        <h2 id="h-testamos" class="reveal" style="--reveal-delay:60ms">Frentes de trabalho</h2>
+        <p class="reveal" style="--reveal-delay:120ms">
+          A profundidade de cada frente depende do escopo acordado e da modalidade escolhida.
+          Nada aqui é executado sem autorização formal.
+        </p>
+        <a class="link-arrow reveal" href="/metodologia" style="--reveal-delay:180ms;margin-top:var(--sp-5)">
+          Ver a metodologia completa <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <ul class="checks reveal" style="--reveal-delay:140ms"><li><div><strong>Definição de objetivo.</strong> O que representa impacto real para o negócio, acordado antes do início.</div></li><li><div><strong>Reconhecimento.</strong> Superfície técnica e exposição pública sobre a organização e suas pessoas.</div></li><li><div><strong>Acesso inicial.</strong> Obtenção do primeiro ponto de apoio pelo vetor mais viável dentro do escopo.</div></li><li><div><strong>Persistência e escalada.</strong> Manutenção do acesso e ampliação de privilégio dentro do ambiente.</div></li><li><div><strong>Movimentação lateral.</strong> Progressão pela rede até os sistemas relacionados ao objetivo.</div></li><li><div><strong>Avaliação da resposta.</strong> Onde houve detecção, o que foi tratado e quanto tempo cada etapa levou.</div></li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="section theme-paper" aria-labelledby="h-entrega">
+  <div class="container">
+    <div class="deliver">
+      <div class="deliver__intro">
+        <p class="chapter-index reveal">05 — O que você recebe</p>
+        <h2 id="h-entrega" class="reveal" style="--reveal-delay:60ms">A entrega ao final do trabalho</h2>
+        <p class="reveal" style="--reveal-delay:140ms">
+          O relatório precisa servir a quem decide prioridade e a quem vai corrigir. Por isso a entrega
+          é construída em camadas, e o ciclo só fecha com o reteste.
+        </p>
+        <a class="btn reveal" href="/contato" style="--reveal-delay:210ms;margin-top:var(--sp-6)">
+          Solicitar avaliação <span class="arw" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <ul class="deliver__list"><li class="reveal" style="--reveal-delay:0ms"><span class="deliver__k">01</span><div><h3>Leitura executiva</h3><p>O cenário de exposição traduzido para linguagem de negócio.</p></div></li><li class="reveal" style="--reveal-delay:60ms"><span class="deliver__k">02</span><div><h3>Relatório técnico</h3><p>Cada achado descrito com o caminho percorrido e as condições para reproduzi-lo.</p></div></li><li class="reveal" style="--reveal-delay:120ms"><span class="deliver__k">03</span><div><h3>Evidências e provas de conceito</h3><p>Demonstração concreta da exploração, sem depender de interpretação.</p></div></li><li class="reveal" style="--reveal-delay:180ms"><span class="deliver__k">04</span><div><h3>Priorização por impacto</h3><p>As descobertas ordenadas pelo risco real para a sua operação.</p></div></li><li class="reveal" style="--reveal-delay:240ms"><span class="deliver__k">05</span><div><h3>Plano de correção</h3><p>Recomendações práticas de remediação, orientadas ao seu contexto técnico.</p></div></li><li class="reveal" style="--reveal-delay:300ms"><span class="deliver__k">06</span><div><h3>Reteste das correções</h3><p>Nova validação após a implementação, confirmando a eliminação do risco.</p></div></li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="section theme-dark" aria-labelledby="h-faq">
+  <div class="container">
+    <div class="split">
+      <div class="split__aside">
+        <p class="chapter-index reveal">06 — Perguntas frequentes</p>
+        <h2 id="h-faq" class="reveal" style="--reveal-delay:60ms">Dúvidas comuns</h2>
+        <p class="reveal" style="--reveal-delay:120ms">
+          Se a sua pergunta não estiver aqui, ela provavelmente é específica do seu ambiente —
+          e é exatamente o tipo de coisa que a conversa inicial resolve.
+        </p>
+      </div>
+      <div class="acc reveal" data-acc data-acc-single style="--reveal-delay:140ms"><div class="acc__item">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-red-team-0">
+            Qual a diferença entre Red Team e pentest?<span class="acc__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="acc__panel" id="faq-red-team-0" role="region"><div><p>O pentest busca cobertura: encontrar o máximo de falhas relevantes em um alvo definido, dentro do tempo acordado. O Red Team busca um objetivo: chegar a um resultado específico da forma que um adversário chegaria, medindo também a detecção. São complementares — e o pentest costuma vir antes.</p></div></div>
+        </div><div class="acc__item">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-red-team-1">
+            A equipe interna deve saber que a operação está acontecendo?<span class="acc__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="acc__panel" id="faq-red-team-1" role="region"><div><p>Normalmente não, porque é isso que permite medir a detecção real. Existe sempre um grupo restrito de pessoas autorizadoras que conhece a operação, para garantir controle, segurança e critérios de parada.</p></div></div>
+        </div><div class="acc__item">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-red-team-2">
+            Isso não é arriscado para a operação da empresa?<span class="acc__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="acc__panel" id="faq-red-team-2" role="region"><div><p>A operação tem escopo, limites e regras de engajamento definidos por escrito, com ações destrutivas excluídas e critérios de parada acordados. O objetivo é demonstrar o caminho, não causar dano.</p></div></div>
+        </div><div class="acc__item">
+          <h3><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq-red-team-3">
+            Faz sentido para uma empresa que nunca fez pentest?<span class="acc__icon" aria-hidden="true"></span>
+          </button></h3>
+          <div class="acc__panel" id="faq-red-team-3" role="region"><div><p>Em geral, não. Se a superfície ainda tem falhas evidentes, um pentest entrega mais valor por um custo menor. O Red Team faz mais sentido quando o básico já está coberto e a pergunta passou a ser sobre resposta.</p></div></div>
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight theme-ink" aria-labelledby="h-rel">
+  <div class="container">
+    <p class="chapter-index reveal">07 — Superfícies relacionadas</p>
+    <h2 id="h-rel" class="reveal" style="--reveal-delay:60ms;font-size:var(--fs-h3)">Costuma fazer sentido junto com</h2>
+    <div class="rel-grid" style="margin-top:var(--sp-6)"><a class="rel reveal" href="/servicos/phishing"><strong>Campanhas de Phishing</strong><span>Quando o ataque chega por e-mail, o que a sua empresa faz?</span><em>Ver serviço →</em></a><a class="rel reveal" href="/servicos/pentest-infraestrutura"><strong>Pentest de Infraestrutura</strong><span>Se alguém entrar, até onde consegue ir sem ser barrado?</span><em>Ver serviço →</em></a><a class="rel reveal" href="/servicos/pentest-cloud"><strong>Pentest Cloud</strong><span>Quem, exatamente, pode chegar aos seus dados na nuvem?</span><em>Ver serviço →</em></a></div>
+  </div>
+</section>
+
+
+<section class="cta-band" aria-labelledby="h-cta">
+  <div class="container cta-band__inner">
+    <p class="eyebrow reveal" style="justify-content:center">Próximo passo</p>
+    <h2 id="h-cta" class="reveal" style="--reveal-delay:60ms;margin-top:var(--sp-4)">Quer avaliar a sua superfície de red team?</h2>
+    <p class="reveal" style="--reveal-delay:140ms">A conversa inicial serve para entender o ambiente, o risco prioritário e o formato de teste adequado. Sem compromisso e sem exigir material técnico preparado.</p>
+    <div class="btn-row reveal" style="--reveal-delay:210ms">
+      <a class="btn" href="/contato">Solicitar avaliação <span class="arw" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="/metodologia">Ver a metodologia</a>
+    </div>
+    <p class="cta-band__meta reveal" style="--reveal-delay:280ms"><span>Escopo sob medida</span><span>Testes autorizados</span><span>Confidencialidade</span><span>Fortaleza — CE</span></p>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="/assets/img/logo-lockup-dark.svg" alt="Infinity Security" width="136" height="26">
+        <p>Segurança ofensiva especializada. Transformamos risco invisível em evidência, prioridade e correção verificada.</p>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Serviços</h2>
+        <ul>
+          <li><a href="/servicos/pentest-web">Pentest Web</a></li>
+          <li><a href="/servicos/pentest-api">Pentest de API</a></li>
+          <li><a href="/servicos/pentest-infraestrutura">Infraestrutura</a></li>
+          <li><a href="/servicos/pentest-cloud">Cloud</a></li>
+          <li><a href="/servicos/pentest-mobile">Mobile</a></li>
+          <li><a href="/servicos/phishing">Phishing</a></li>
+          <li><a href="/servicos/red-team">Red Team</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Empresa</h2>
+        <ul>
+          <li><a href="/servicos">Todos os serviços</a></li>
+          <li><a href="/metodologia">Metodologia</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="/contato">Contato</a></li>
+          <li><a href="/.well-known/security.txt">security.txt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Contato</h2>
+        <address>
+          <a href="https://wa.me/5585999243465" rel="noopener">WhatsApp +55 85 99924-3465</a><br>
+          Rua José Alencar Ramos, 385 — Sala 3<br>
+          Eng. Luciano Cavalcante<br>
+          Fortaleza — CE
+        </address>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> Infinity Security. Todos os direitos reservados.</span>
+      <span>CNPJ 68.537.755/0001-63</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

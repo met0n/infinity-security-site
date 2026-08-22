@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metodologia de Pentest | Infinity Security</title>
+<meta name="description" content="As cinco etapas de uma avaliação ofensiva — reconhecimento, exploração, escalada e impacto, relatório e remediação, e reteste — além das modalidades Black, Gray e White Box.">
+<link rel="canonical" href="https://infinitysecurity.com.br/metodologia">
+<meta name="theme-color" content="#08111f">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Infinity Security">
+<meta property="og:title" content="Metodologia de Pentest | Infinity Security">
+<meta property="og:description" content="As cinco etapas de uma avaliação ofensiva — reconhecimento, exploração, escalada e impacto, relatório e remediação, e reteste — além das modalidades Black, Gray e White Box.">
+<meta property="og:url" content="https://infinitysecurity.com.br/metodologia">
+<meta property="og:image" content="https://infinitysecurity.com.br/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Metodologia de Pentest | Infinity Security">
+<meta name="twitter:description" content="As cinco etapas de uma avaliação ofensiva — reconhecimento, exploração, escalada e impacto, relatório e remediação, e reteste — além das modalidades Black, Gray e White Box.">
+<meta name="twitter:image" content="https://infinitysecurity.com.br/assets/img/og-image.png">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+
+<link rel="preload" href="/assets/fonts/hanken-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>document.documentElement.classList.remove('no-js');</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo",
+"name":"Metodologia de teste de intrusão da Infinity Security",
+"description":"As cinco etapas de uma avaliação ofensiva: reconhecimento, exploração, escalada e impacto, relatório e remediação, e reteste.",
+"url":"https://infinitysecurity.com.br/metodologia",
+"step":[{"@type":"HowToStep","position":1,"name":"Reconhecimento","text":"Mapeamento da superfície de ataque real da empresa."}, {"@type":"HowToStep","position":2,"name":"Exploração","text":"Simulação de ataques reais, manuais e direcionados."}, {"@type":"HowToStep","position":3,"name":"Escalada & Impacto","text":"Demonstração do impacto real de negócio."}, {"@type":"HowToStep","position":4,"name":"Relatório & Remediação","text":"Evidências claras, priorizadas por risco, com plano de correção."}, {"@type":"HowToStep","position":5,"name":"Reteste","text":"Validação das correções e dos controles implementados."}]}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="nav" data-nav>
+  <div class="container container--wide nav__inner">
+    <a class="nav__logo" href="/" aria-label="Infinity Security — página inicial">
+      <img src="/assets/img/logo-lockup-dark.svg" alt="Infinity Security" width="136" height="26">
+    </a>
+
+    <nav aria-label="Principal">
+      <ul class="nav__menu">
+        <li class="nav__group">
+          <a class="nav__link" href="/servicos">
+            Serviços
+            <svg class="nav__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </a>
+          <div class="nav__panel">
+            <ul class="nav__panel-grid">
+              <li><a class="nav__panel-link" href="/servicos/pentest-web"><strong>Pentest Web</strong><span>Aplicações, portais e regras de negócio</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-api"><strong>Pentest de API</strong><span>Integrações, autorização e fluxos críticos</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-infraestrutura"><strong>Pentest de Infraestrutura</strong><span>Perímetro, redes internas e servidores</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-cloud"><strong>Pentest Cloud</strong><span>AWS, Azure e GCP: identidade e configuração</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/pentest-mobile"><strong>Pentest Mobile</strong><span>iOS e Android, análise estática e dinâmica</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/phishing"><strong>Campanhas de Phishing</strong><span>Resiliência humana a engenharia social</span></a></li>
+              <li><a class="nav__panel-link" href="/servicos/red-team"><strong>Operações de Red Team</strong><span>Pessoas, processos, tecnologia e detecção</span></a></li>
+            </ul>
+            <div class="nav__panel-foot">
+              <span>07 superfícies cobertas</span>
+              <a class="link-arrow" href="/servicos">Ver todos os serviços <span class="arw" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </li>
+        <li><a class="nav__link" href="/metodologia" aria-current="page">Metodologia</a></li>
+        <li><a class="nav__link" href="/sobre">Sobre</a></li>
+        <li><a class="nav__link" href="/contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn" href="/contato">Solicitar avaliação</a>
+      <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-drawer" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav__drawer" id="nav-drawer" data-nav-drawer>
+  <nav aria-label="Menu mobile">
+    <ul class="nav__drawer-main">
+      <li>
+        <a href="/servicos">Serviços <span aria-hidden="true">→</span></a>
+        <ul class="nav__drawer-sub">
+          <li><a href="/servicos/pentest-web">Pentest Web</a></li>
+          <li><a href="/servicos/pentest-api">Pentest de API</a></li>
+          <li><a href="/servicos/pentest-infraestrutura">Pentest de Infraestrutura</a></li>
+          <li><a href="/servicos/pentest-cloud">Pentest Cloud</a></li>
+          <li><a href="/servicos/pentest-mobile">Pentest Mobile</a></li>
+          <li><a href="/servicos/phishing">Campanhas de Phishing</a></li>
+          <li><a href="/servicos/red-team">Operações de Red Team</a></li>
+        </ul>
+      </li>
+      <li><a href="/metodologia">Metodologia <span aria-hidden="true">→</span></a></li>
+      <li><a href="/sobre">Sobre <span aria-hidden="true">→</span></a></li>
+      <li><a href="/contato">Contato <span aria-hidden="true">→</span></a></li>
+    </ul>
+    <a class="btn" href="/contato">Solicitar avaliação</a>
+    <p class="nav__drawer-meta">
+      WhatsApp +55 85 99924-3465<br>
+      Fortaleza — CE
+    </p>
+  </nav>
+</div>
+
+<main id="conteudo">
+
+<section class="page-hero">
+  <div class="container container--wide">
+    <nav class="crumbs" aria-label="Trilha de navegação"><ol><li><a href="/">Início</a></li><li aria-current="page">Metodologia</li></ol></nav><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://infinitysecurity.com.br/"}, {"@type":"ListItem","position":2,"name":"Metodologia"}]}</script>
+    <div class="page-hero__grid">
+      <div>
+        <p class="eyebrow enter">Como um teste acontece</p>
+        <h1 class="enter" style="--reveal-delay:60ms">Do primeiro mapeamento à correção validada.</h1>
+        <p class="page-hero__q enter" style="--reveal-delay:110ms">
+          Um teste só termina quando a falha deixa de existir — não quando o relatório é entregue.
+        </p>
+        <p class="page-hero__lead enter" style="--reveal-delay:170ms">
+          A metodologia é a mesma em todos os serviços; o que muda é a superfície avaliada e a
+          profundidade permitida pela modalidade escolhida. Cinco etapas, executadas em sequência,
+          com comunicação aberta durante todo o percurso.
+        </p>
+        <div class="page-hero__cta enter" style="--reveal-delay:210ms">
+          <a class="btn" href="/contato">Solicitar avaliação <span class="arw" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="/servicos">Ver os serviços</a>
+        </div>
+      </div>
+      <aside class="page-hero__aside enter" style="--reveal-delay:280ms">
+        <dl>
+          <dt>Etapas</dt><dd>Reconhecimento · Exploração · Escalada &amp; Impacto · Relatório &amp; Remediação · Reteste</dd>
+          <dt>Autorização</dt><dd>Escopo e limites definidos por escrito antes do início</dd>
+          <dt>Durante o trabalho</dt><dd>Achados críticos comunicados sem esperar o relatório</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section theme-ink dotfield" aria-labelledby="h-corredor">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="chapter-index reveal">01 — O percurso</p>
+        <h2 id="h-corredor" class="reveal" style="--reveal-delay:60ms">As cinco etapas, uma a uma</h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <p style="margin-top:0">
+          As etapas não são estanques: o que se descobre na exploração costuma alimentar novo
+          reconhecimento, e o impacto medido pode abrir uma frente que não estava prevista.
+          A sequência abaixo descreve o fluxo principal.
+        </p>
+      </div>
+    </div>
+
+    <div class="corridor" data-diagram><article class="stage reveal" style="--i:0" id="etapa-1">
+      <div class="stage__mark" aria-hidden="true"><span></span></div>
+      <div class="stage__body">
+        <p class="stage__n">Etapa 01</p>
+        <h3>Reconhecimento</h3>
+        <p class="stage__sum">Mapeamento da superfície de ataque real da empresa.</p>
+        <p class="stage__txt">Antes de atacar qualquer coisa, é preciso saber o que existe. Levantamos o que está publicado, o que está acessível e o que se relaciona com o alvo — inclusive ativos que não constavam no inventário. Essa etapa frequentemente já produz achados por si só, porque exposição esquecida é uma das formas mais comuns de porta aberta.</p>
+        <ul class="checks"><li><div>Identificação de ativos e superfícies expostas</div></li><li><div>Levantamento de tecnologias, versões e integrações</div></li><li><div>Informação pública aproveitável em um ataque</div></li><li><div>Priorização dos alvos dentro do escopo acordado</div></li></ul>
+      </div>
+    </article><article class="stage reveal" style="--i:1" id="etapa-2">
+      <div class="stage__mark" aria-hidden="true"><span></span></div>
+      <div class="stage__body">
+        <p class="stage__n">Etapa 02</p>
+        <h3>Exploração</h3>
+        <p class="stage__sum">Simulação de ataques reais, manuais e direcionados.</p>
+        <p class="stage__txt">Com o mapa em mãos, começa o trabalho ofensivo propriamente dito. A exploração é manual e direcionada: automação apoia a cobertura, mas as falhas que realmente importam — as de lógica, autorização e encadeamento — exigem alguém entendendo o que o sistema faz e porque ele faz daquele jeito.</p>
+        <ul class="checks"><li><div>Validação manual de cada hipótese levantada</div></li><li><div>Encadeamento de falhas individualmente pequenas</div></li><li><div>Testes de autorização com cada nível de privilégio</div></li><li><div>Registro de evidência para cada achado confirmado</div></li></ul>
+      </div>
+    </article><article class="stage reveal" style="--i:2" id="etapa-3">
+      <div class="stage__mark" aria-hidden="true"><span></span></div>
+      <div class="stage__body">
+        <p class="stage__n">Etapa 03</p>
+        <h3>Escalada &amp; Impacto</h3>
+        <p class="stage__sum">Demonstração do impacto real de negócio.</p>
+        <p class="stage__txt">Uma vulnerabilidade sem contexto é apenas um item de lista. Nesta etapa, medimos até onde o achado leva: que dados alcança, que privilégio concede, que operação interrompe. É essa medida que transforma severidade técnica em prioridade de negócio — e é ela que permite decidir o que corrigir primeiro.</p>
+        <ul class="checks"><li><div>Escalada de privilégio a partir do acesso obtido</div></li><li><div>Alcance real: dados, sistemas e operações atingidos</div></li><li><div>Tradução do risco técnico em risco operacional e financeiro</div></li><li><div>Comunicação imediata de achados de alta severidade</div></li></ul>
+      </div>
+    </article><article class="stage reveal" style="--i:3" id="etapa-4">
+      <div class="stage__mark" aria-hidden="true"><span></span></div>
+      <div class="stage__body">
+        <p class="stage__n">Etapa 04</p>
+        <h3>Relatório &amp; Remediação</h3>
+        <p class="stage__sum">Evidências claras, priorizadas por risco, com plano de correção.</p>
+        <p class="stage__txt">A entrega é construída em camadas para servir a duas audiências: quem decide prioridade e orçamento, e quem vai efetivamente corrigir. Cada achado traz o caminho percorrido, a evidência que o sustenta e uma recomendação prática, orientada ao seu contexto técnico — não a uma referência genérica.</p>
+        <ul class="checks"><li><div>Leitura executiva do cenário de exposição</div></li><li><div>Relatório técnico com passos de reprodução</div></li><li><div>Priorização por impacto real na operação</div></li><li><div>Plano de correção executável, com sessão de esclarecimento técnico</div></li></ul>
+      </div>
+    </article><article class="stage reveal" style="--i:4" id="etapa-5">
+      <div class="stage__mark" aria-hidden="true"><span></span></div>
+      <div class="stage__body">
+        <p class="stage__n">Etapa 05</p>
+        <h3>Reteste</h3>
+        <p class="stage__sum">Validação das correções e dos controles implementados.</p>
+        <p class="stage__txt">O ciclo não fecha na entrega do relatório. Depois que sua equipe implementa as correções, testamos de novo: confirmamos que o caminho de ataque deixou de existir e que a correção não abriu um caminho novo. É o reteste que transforma uma recomendação em resultado verificado.</p>
+        <ul class="checks"><li><div>Nova execução dos testes sobre os achados corrigidos</div></li><li><div>Verificação de que a correção não introduziu regressão</div></li><li><div>Registro do estado final de cada achado</div></li><li><div>Base comparável para a próxima avaliação</div></li></ul>
+      </div>
+    </article></div>
+  </div>
+</section>
+
+<section class="section theme-light dotfield dotfield--light" aria-labelledby="h-mod">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="chapter-index reveal">02 — Modalidades</p>
+        <h2 id="h-mod" class="reveal" style="--reveal-delay:60ms">Quanto o testador sabe antes de começar</h2>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <p style="margin-top:0">
+          A modalidade não muda a metodologia: muda o ponto de partida. E o ponto de partida
+          determina quanto do ambiente o mesmo prazo consegue cobrir.
+        </p>
+      </div>
+    </div>
+
+    <div class="modes" style="margin-top:var(--sp-8)">
+      <article class="mode reveal">
+        <div class="mode__bar"><i class="on"></i><i></i><i></i></div>
+        <h3>Black Box</h3>
+        <p>Sem conhecimento prévio do alvo. O auditor inicia sem informações internas sobre a
+        infraestrutura ou o código, exatamente como um atacante externo começaria.</p>
+        <dl>
+          <dt>Ponto de partida</dt><dd>Apenas o alvo autorizado</dd>
+          <dt>Trabalho característico</dt><dd>Reconhecimento externo, varredura, mapeamento de superfície e exploração externa</dd>
+          <dt>Ganha em</dt><dd>Fidelidade à experiência real de um atacante sem acesso</dd>
+          <dt>Custa em</dt><dd>Tempo gasto em descoberta, que deixa de ser gasto em profundidade</dd>
+        </dl>
+      </article>
+
+      <article class="mode reveal" style="--reveal-delay:80ms">
+        <div class="mode__bar"><i class="on"></i><i class="on"></i><i></i></div>
+        <h3>Gray Box</h3>
+        <p>Abordagem híbrida com informações parciais: credenciais de baixo privilégio, documentação
+        básica ou diagramas de arquitetura.</p>
+        <dl>
+          <dt>Ponto de partida</dt><dd>Acesso limitado e contexto parcial</dd>
+          <dt>Trabalho característico</dt><dd>Simulação de ameaça interna e exploração aprofundada da lógica de negócio</dd>
+          <dt>Ganha em</dt><dd>Equilíbrio entre realismo e cobertura efetiva</dd>
+          <dt>Custa em</dt><dd>Parte do cenário externo puro deixa de ser exercitada</dd>
+        </dl>
+      </article>
+
+      <article class="mode reveal" style="--reveal-delay:160ms">
+        <div class="mode__bar"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <h3>White Box</h3>
+        <p>Conhecimento completo do alvo: código-fonte, documentação de APIs, diagramas detalhados
+        de rede e credenciais administrativas.</p>
+        <dl>
+          <dt>Ponto de partida</dt><dd>Visão integral do ambiente e do código</dd>
+          <dt>Trabalho característico</dt><dd>Análise profunda e estrutural, incluindo falhas invisíveis por fora</dd>
+          <dt>Ganha em</dt><dd>Cobertura e profundidade máximas no mesmo prazo</dd>
+          <dt>Custa em</dt><dd>Menor semelhança com a jornada de um atacante externo</dd>
+        </dl>
+      </article>
+    </div>
+
+    <p class="reveal" style="margin-top:var(--sp-6);font-size:var(--fs-small);color:var(--ink-low);max-width:74ch">
+      Nenhuma modalidade é superior às outras. A escolha depende do que você precisa provar: a
+      resistência a alguém que chega de fora, o alcance de quem já tem algum acesso, ou a solidez
+      estrutural do que foi construído.
+    </p>
+  </div>
+</section>
+
+<section class="section theme-dark" aria-labelledby="h-princ">
+  <div class="container">
+    <div class="split">
+      <div class="split__aside">
+        <p class="chapter-index reveal">03 — Princípios de execução</p>
+        <h2 id="h-princ" class="reveal" style="--reveal-delay:60ms">O que orienta cada decisão durante o trabalho</h2>
+        <p class="reveal" style="--reveal-delay:120ms">
+          Estes princípios não são preferências de estilo: são o que separa uma avaliação que gera
+          direção de um documento que gera trabalho sem prioridade.
+        </p>
+      </div>
+      <ol class="stack-list reveal" style="--reveal-delay:140ms">
+        <li><span class="n">01</span><h3>Pensar como um atacante</h3><p>A avaliação parte da perspectiva de quem tenta entrar, não da lista do que deveria estar configurado.</p></li>
+        <li><span class="n">02</span><h3>Teste real acima de checklist</h3><p>Cobertura padronizada não substitui a investigação do que aquele ambiente específico permite.</p></li>
+        <li><span class="n">03</span><h3>Automação como apoio</h3><p>Ferramentas ampliam alcance e liberam tempo; a análise que encontra o que importa é humana.</p></li>
+        <li><span class="n">04</span><h3>Impacto demonstrado</h3><p>Não basta listar vulnerabilidades: é preciso mostrar até onde cada uma leva.</p></li>
+        <li><span class="n">05</span><h3>Risco técnico ligado ao negócio</h3><p>Cada achado é relacionado à operação, para que a priorização faça sentido para quem decide.</p></li>
+        <li><span class="n">06</span><h3>Evidência clara</h3><p>Toda afirmação vem com prova reproduzível. Sem demonstração, não há risco confirmado.</p></li>
+        <li><span class="n">07</span><h3>Remediação prática</h3><p>A recomendação considera seu contexto técnico e seu ritmo de entrega, não um cenário ideal.</p></li>
+        <li><span class="n">08</span><h3>Correção validada por reteste</h3><p>O trabalho termina com a confirmação de que o risco foi efetivamente eliminado.</p></li>
+        <li><span class="n">09</span><h3>Comunicação transparente</h3><p>Você acompanha o andamento durante todo o engajamento, e não apenas na entrega final.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section theme-ink" aria-labelledby="h-escopo">
+  <div class="container">
+    <div class="split">
+      <div class="split__aside">
+        <p class="chapter-index reveal">04 — Escopo</p>
+        <h2 id="h-escopo" class="reveal" style="--reveal-delay:60ms">Não existe um pacote único para todos</h2>
+        <p class="reveal" style="--reveal-delay:120ms">
+          Um escopo bem definido é o que determina se a avaliação vai responder à pergunta certa.
+          Ele é construído com você, antes de qualquer teste, e formalizado por escrito.
+        </p>
+      </div>
+      <div class="reveal" style="--reveal-delay:140ms">
+        <ul class="checks checks--2">
+          <li><div><strong>Tamanho da empresa.</strong> A estrutura e o volume de ativos mudam o que é possível cobrir com profundidade.</div></li>
+          <li><div><strong>Maturidade da operação.</strong> O que faz sentido testar depende do que já foi endereçado antes.</div></li>
+          <li><div><strong>Superfície de ataque.</strong> O que está exposto e como está exposto define as frentes prioritárias.</div></li>
+          <li><div><strong>Tecnologias utilizadas.</strong> Cada stack traz classes de falha próprias e exige abordagem específica.</div></li>
+          <li><div><strong>Riscos relevantes para o negócio.</strong> O que não pode falhar orienta onde concentrar esforço.</div></li>
+          <li><div><strong>Limites e janelas acordados.</strong> Ambientes, horários, ações permitidas e critérios de parada.</div></li>
+        </ul>
+        <div class="icp" style="margin-top:var(--sp-7)">
+          <p class="eyebrow">Autorização e conduta</p>
+          <p>Todo teste é executado dentro de um escopo ético e autorizado, formalizado antes do
+          início. Informações, ambientes e vulnerabilidades são tratados com confidencialidade, e
+          ações destrutivas ficam fora do escopo salvo autorização específica e documentada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="cta-band" aria-labelledby="h-cta">
+  <div class="container cta-band__inner">
+    <p class="eyebrow reveal" style="justify-content:center">Próximo passo</p>
+    <h2 id="h-cta" class="reveal" style="--reveal-delay:60ms;margin-top:var(--sp-4)">Vamos definir o escopo certo para o seu ambiente.</h2>
+    <p class="reveal" style="--reveal-delay:140ms">A conversa inicial serve para entender sua superfície, seus riscos prioritários e qual modalidade responde à sua pergunta. Sem compromisso.</p>
+    <div class="btn-row reveal" style="--reveal-delay:210ms">
+      <a class="btn" href="/contato">Solicitar avaliação <span class="arw" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="/metodologia">Ver a metodologia</a>
+    </div>
+    <p class="cta-band__meta reveal" style="--reveal-delay:280ms"><span>Escopo sob medida</span><span>Testes autorizados</span><span>Confidencialidade</span><span>Fortaleza — CE</span></p>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="/assets/img/logo-lockup-dark.svg" alt="Infinity Security" width="136" height="26">
+        <p>Segurança ofensiva especializada. Transformamos risco invisível em evidência, prioridade e correção verificada.</p>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Serviços</h2>
+        <ul>
+          <li><a href="/servicos/pentest-web">Pentest Web</a></li>
+          <li><a href="/servicos/pentest-api">Pentest de API</a></li>
+          <li><a href="/servicos/pentest-infraestrutura">Infraestrutura</a></li>
+          <li><a href="/servicos/pentest-cloud">Cloud</a></li>
+          <li><a href="/servicos/pentest-mobile">Mobile</a></li>
+          <li><a href="/servicos/phishing">Phishing</a></li>
+          <li><a href="/servicos/red-team">Red Team</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Empresa</h2>
+        <ul>
+          <li><a href="/servicos">Todos os serviços</a></li>
+          <li><a href="/metodologia">Metodologia</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="/contato">Contato</a></li>
+          <li><a href="/.well-known/security.txt">security.txt</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Contato</h2>
+        <address>
+          <a href="https://wa.me/5585999243465" rel="noopener">WhatsApp +55 85 99924-3465</a><br>
+          Rua José Alencar Ramos, 385 — Sala 3<br>
+          Eng. Luciano Cavalcante<br>
+          Fortaleza — CE
+        </address>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> Infinity Security. Todos os direitos reservados.</span>
+      <span>CNPJ 68.537.755/0001-63</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>
