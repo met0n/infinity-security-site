@@ -706,10 +706,15 @@ html.no-js .acc__btn { cursor: default; }
 @media (min-width: 700px) { .cred-grid { grid-template-columns: repeat(4, 1fr); } }
 .cred {
   background: var(--surface-100); padding: var(--sp-5) var(--sp-4);
-  display: flex; flex-direction: column; gap: .3rem; align-items: flex-start;
+  display: flex; flex-direction: column; gap: .55rem; align-items: flex-start;
   transition: background-color var(--dur-mid) var(--ease-out);
 }
 .cred:hover { background: var(--surface-200); }
+.cred__head { display: flex; align-items: center; gap: .65rem; }
+.cred__badge {
+  width: 40px; height: 40px; object-fit: contain; flex-shrink: 0;
+  border-radius: var(--r-sm);
+}
 .cred strong {
   font-family: var(--font-display); font-size: 1.05rem; font-weight: 600;
   color: var(--text-hi); letter-spacing: -.01em;
