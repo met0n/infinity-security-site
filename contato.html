@@ -154,7 +154,9 @@
         </p>
 
         <form class="form reveal" style="--reveal-delay:180ms;margin-top:var(--sp-6)"
-              data-wa-form data-wa-phone="5585999243465" novalidate>
+              data-wa-form data-wa-phone="5585999243465"
+              data-web3forms-key="SUBSTITUA_PELA_SUA_CHAVE_WEB3FORMS" novalidate>
+          <input type="text" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form__row">
             <div class="field">
               <label for="f-nome">Nome</label>
@@ -187,13 +189,18 @@
           </div>
 
           <p class="form__note">
-            Ao enviar, o WhatsApp abre em uma nova aba com esta mensagem já preenchida — você revisa
-            antes de enviar de fato. Nada é armazenado neste site: não há banco de dados, formulário
-            de servidor ou ferramenta de rastreamento nesta página.
+            Ao enviar, os dados seguem por e-mail para nossa equipe através do Web3Forms — não usamos
+            banco de dados nem ferramentas de rastreamento neste site. Se preferir, o WhatsApp continua
+            disponível como canal direto, antes ou depois do envio.
           </p>
 
-          <button class="btn" type="submit">Abrir no WhatsApp com meus dados <span class="arw" aria-hidden="true">→</span></button>
-          <p class="form__status" data-wa-status hidden role="status"></p>
+          <button class="btn" type="submit">Enviar solicitação <span class="arw" aria-hidden="true">→</span></button>
+
+          <div class="form__result" data-form-result hidden role="status" aria-live="polite">
+            <p class="form__result-title" data-form-result-title></p>
+            <p class="form__result-text" data-form-result-text></p>
+            <a class="btn" data-form-result-cta href="https://wa.me/5585999243465" rel="noopener">Falar no WhatsApp agora <span class="arw" aria-hidden="true">→</span></a>
+          </div>
         </form>
       </div>
 

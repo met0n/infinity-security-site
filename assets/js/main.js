@@ -124,12 +124,37 @@
   }
 
   /* ------------------------------------------------------------------
-     Formulário de contato → mensagem estruturada no WhatsApp
+     Formulário de contato → e-mail via Web3Forms, com WhatsApp como
+     caminho direto tanto na confirmação quanto na falha de envio.
      ------------------------------------------------------------------ */
   function initContactForm() {
     var form = document.querySelector('[data-wa-form]');
     if (!form) return;
     var phone = form.getAttribute('data-wa-phone');
+    var accessKey = form.getAttribute('data-web3forms-key');
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var submitLabelHTML = submitBtn ? submitBtn.innerHTML : '';
+    var result = form.querySelector('[data-form-result]');
+    var resultTitle = result && result.querySelector('[data-form-result-title]');
+    var resultText = result && result.querySelector('[data-form-result-text]');
+    var resultCta = result && result.querySelector('[data-form-result-cta]');
+    var waGenerico = 'Olá! Vim do site da Infinity Security e gostaria de saber mais sobre os serviços de vocês.';
+
+    function waUrl(mensagem) {
+      return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(mensagem);
+    }
+
+    function mostrarResultado(titulo, texto, sucesso) {
+      if (sucesso) {
+        form.querySelectorAll('.field, .form__note, .form__row').forEach(function (el) { el.hidden = true; });
+        if (submitBtn) submitBtn.hidden = true;
+      }
+      if (!result) return;
+      result.hidden = false;
+      if (resultTitle) resultTitle.textContent = titulo;
+      if (resultText) resultText.textContent = texto;
+      if (resultCta) resultCta.href = waUrl(waGenerico);
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -138,23 +163,44 @@
       var d = new FormData(form);
       var get = function (k) { return (d.get(k) || '').toString().trim(); };
 
-      var linhas = [
-        'Solicitação de avaliação — Infinity Security',
-        '',
-        'Nome: ' + get('nome'),
-        'Empresa: ' + get('empresa'),
-        'E-mail: ' + get('email'),
-        'Serviço de interesse: ' + get('servico')
-      ];
-      if (get('mensagem')) linhas.push('', 'Contexto:', get('mensagem'));
+      // honeypot: bots preenchem campos escondidos, humanos não
+      if (get('botcheck')) return;
 
-      var url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(linhas.join('\n'));
-      var status = form.querySelector('[data-wa-status]');
-      if (status) {
-        status.hidden = false;
-        status.textContent = 'Abrindo o WhatsApp com sua mensagem preenchida. Se a janela não abrir, verifique o bloqueio de pop-ups.';
-      }
-      window.open(url, '_blank', 'noopener');
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
+
+      var payload = {
+        access_key: accessKey,
+        subject: 'Nova solicitação — site Infinity Security',
+        from_name: 'Site Infinity Security',
+        nome: get('nome'),
+        empresa: get('empresa'),
+        email: get('email'),
+        servico: get('servico'),
+        mensagem: get('mensagem') || '—'
+      };
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || !data.success) throw new Error((data && data.message) || 'Falha no envio');
+          mostrarResultado(
+            'Solicitação enviada.',
+            'Recebemos os detalhes por e-mail e já vamos analisar. Se preferir uma resposta mais rápida, fale com a gente agora:',
+            true
+          );
+        })
+        .catch(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = submitLabelHTML; }
+          mostrarResultado(
+            'Não conseguimos enviar agora.',
+            'Pode tentar novamente em instantes — ou já ir direto pro WhatsApp, sem perder tempo:',
+            false
+          );
+        });
     });
   }
 

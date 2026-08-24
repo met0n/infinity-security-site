@@ -1317,6 +1317,17 @@ html.no-js .dgm-row, html.no-js .dgm-callout { opacity: 1; transform: none; }
   padding: var(--sp-4) var(--sp-5); border: 1px solid rgba(89,184,255,.4);
   border-radius: var(--r-sm); background: rgba(36,107,253,.1);
 }
+.hp-field { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+.form__result {
+  display: grid; gap: var(--sp-4); padding: var(--sp-6);
+  border: 1px solid rgba(89,184,255,.4); border-radius: var(--r-md);
+  background: linear-gradient(160deg, rgba(36,107,253,.14), rgba(8,17,31,.35));
+}
+.form__result-title {
+  font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; color: var(--text-hi);
+}
+.form__result-text { color: var(--text-mid); font-size: var(--fs-small); line-height: 1.6; }
+.form__result .btn { justify-self: start; }
 .contact-grid { display: grid; gap: var(--sp-8); grid-template-columns: 1fr; }
 @media (min-width: 980px) { .contact-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: var(--sp-10); align-items: start; } }
 .contact-card {
