@@ -157,6 +157,8 @@
               data-wa-form data-wa-phone="5585999243465"
               data-web3forms-key="cb518168-0c4d-49bd-a2ad-0e56caae36a8" novalidate>
           <input type="text" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form__fields" data-form-fields>
           <div class="form__row">
             <div class="field">
               <label for="f-nome">Nome</label>
@@ -194,12 +196,28 @@
             disponível como canal direto, antes ou depois do envio.
           </p>
 
-          <button class="btn" type="submit">Enviar solicitação <span class="arw" aria-hidden="true">→</span></button>
+          <button class="btn" type="submit" data-form-submit>
+            <span class="btn__label">Enviar solicitação</span>
+            <span class="arw" aria-hidden="true">→</span>
+            <span class="btn__spinner" aria-hidden="true"></span>
+          </button>
+          </div><!-- /.form__fields -->
 
           <div class="form__result" data-form-result hidden role="status" aria-live="polite">
-            <p class="form__result-title" data-form-result-title></p>
-            <p class="form__result-text" data-form-result-text></p>
-            <a class="btn" data-form-result-cta href="https://wa.me/5585999243465" rel="noopener">Falar no WhatsApp agora <span class="arw" aria-hidden="true">→</span></a>
+            <span class="form__result-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle class="frs-ring" cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/>
+                <path class="frs-mark frs-check" d="M10 16.5l4 4 8-8.5" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="frs-mark frs-alert" d="M16 9.5v8M16 22.2v.3" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div class="form__result-body">
+              <p class="form__result-title" data-form-result-title></p>
+              <p class="form__result-text" data-form-result-text></p>
+              <a class="btn" data-form-result-cta href="https://wa.me/5585999243465" rel="noopener">Falar no WhatsApp agora <span class="arw" aria-hidden="true">→</span></a>
+            </div>
           </div>
         </form>
       </div>

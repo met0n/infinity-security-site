@@ -130,30 +130,50 @@
   function initContactForm() {
     var form = document.querySelector('[data-wa-form]');
     if (!form) return;
+
     var phone = form.getAttribute('data-wa-phone');
     var accessKey = form.getAttribute('data-web3forms-key');
-    var submitBtn = form.querySelector('button[type="submit"]');
-    var submitLabelHTML = submitBtn ? submitBtn.innerHTML : '';
+    var fields = form.querySelector('[data-form-fields]');
+    var submitBtn = form.querySelector('[data-form-submit]');
+    var btnLabel = submitBtn && submitBtn.querySelector('.btn__label');
+    var labelPadrao = btnLabel ? btnLabel.textContent : '';
     var result = form.querySelector('[data-form-result]');
     var resultTitle = result && result.querySelector('[data-form-result-title]');
     var resultText = result && result.querySelector('[data-form-result-text]');
     var resultCta = result && result.querySelector('[data-form-result-cta]');
     var waGenerico = 'Olá! Vim do site da Infinity Security e gostaria de saber mais sobre os serviços de vocês.';
+    var semMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function waUrl(mensagem) {
       return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(mensagem);
     }
 
-    function mostrarResultado(titulo, texto, sucesso) {
-      if (sucesso) {
-        form.querySelectorAll('.field, .form__note, .form__row').forEach(function (el) { el.hidden = true; });
-        if (submitBtn) submitBtn.hidden = true;
-      }
+    function carregando(ativo) {
+      if (!submitBtn) return;
+      submitBtn.disabled = ativo;
+      submitBtn.classList.toggle('is-loading', ativo);
+      if (btnLabel) btnLabel.textContent = ativo ? 'Enviando…' : labelPadrao;
+    }
+
+    function exibirResultado(titulo, texto, erro) {
       if (!result) return;
-      result.hidden = false;
+      result.classList.toggle('is-error', !!erro);
       if (resultTitle) resultTitle.textContent = titulo;
       if (resultText) resultText.textContent = texto;
       if (resultCta) resultCta.href = waUrl(waGenerico);
+      result.hidden = false;
+    }
+
+    // Sucesso: os campos saem de cena antes de a confirmação entrar.
+    function concluir(titulo, texto) {
+      if (!fields) { exibirResultado(titulo, texto, false); return; }
+      var finalizar = function () {
+        fields.hidden = true;
+        exibirResultado(titulo, texto, false);
+      };
+      if (semMotion) { finalizar(); return; }
+      fields.classList.add('is-leaving');
+      window.setTimeout(finalizar, 320); // acompanha --dur-mid
     }
 
     form.addEventListener('submit', function (e) {
@@ -166,39 +186,37 @@
       // honeypot: bots preenchem campos escondidos, humanos não
       if (get('botcheck')) return;
 
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
-
-      var payload = {
-        access_key: accessKey,
-        subject: 'Nova solicitação — site Infinity Security',
-        from_name: 'Site Infinity Security',
-        nome: get('nome'),
-        empresa: get('empresa'),
-        email: get('email'),
-        servico: get('servico'),
-        mensagem: get('mensagem') || '—'
-      };
+      if (result) result.hidden = true;
+      carregando(true);
 
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: 'Nova solicitação — site Infinity Security',
+          from_name: 'Site Infinity Security',
+          nome: get('nome'),
+          empresa: get('empresa'),
+          email: get('email'),
+          servico: get('servico'),
+          mensagem: get('mensagem') || '—'
+        })
       })
         .then(function (r) { return r.json(); })
         .then(function (data) {
           if (!data || !data.success) throw new Error((data && data.message) || 'Falha no envio');
-          mostrarResultado(
+          concluir(
             'Solicitação enviada.',
-            'Recebemos os detalhes por e-mail e já vamos analisar. Se preferir uma resposta mais rápida, fale com a gente agora:',
-            true
+            'Recebemos os detalhes por e-mail e já vamos analisar. Se preferir uma resposta mais rápida, fale com a gente agora:'
           );
         })
         .catch(function () {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = submitLabelHTML; }
-          mostrarResultado(
+          carregando(false);
+          exibirResultado(
             'Não conseguimos enviar agora.',
             'Pode tentar novamente em instantes — ou já ir direto pro WhatsApp, sem perder tempo:',
-            false
+            true
           );
         });
     });
