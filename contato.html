@@ -162,18 +162,18 @@
           <div class="form__row">
             <div class="field">
               <label for="f-nome">Nome</label>
-              <input id="f-nome" name="nome" type="text" required autocomplete="name" placeholder="Como devemos chamar você">
+              <input id="f-nome" name="nome" type="text" required maxlength="120" autocomplete="name" placeholder="Como devemos chamar você">
             </div>
             <div class="field">
               <label for="f-empresa">Empresa</label>
-              <input id="f-empresa" name="empresa" type="text" required autocomplete="organization" placeholder="Nome da organização">
+              <input id="f-empresa" name="empresa" type="text" required maxlength="120" autocomplete="organization" placeholder="Nome da organização">
             </div>
           </div>
 
           <div class="form__row">
             <div class="field">
               <label for="f-email">E-mail corporativo</label>
-              <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com.br">
+              <input id="f-email" name="email" type="email" required maxlength="180" autocomplete="email" placeholder="voce@empresa.com.br">
             </div>
             <div class="field">
               <label for="f-servico">Serviço de interesse</label>
@@ -187,7 +187,7 @@
 
           <div class="field">
             <label for="f-mensagem">Contexto <span style="text-transform:none;letter-spacing:0">(opcional)</span></label>
-            <textarea id="f-mensagem" name="mensagem" placeholder="O que motivou a busca, prazos relevantes, ambiente envolvido…"></textarea>
+            <textarea id="f-mensagem" name="mensagem" maxlength="2000" placeholder="O que motivou a busca, prazos relevantes, ambiente envolvido…"></textarea>
           </div>
 
           <p class="form__note">
@@ -334,6 +334,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/main.js?v=7f952473" defer></script>
+<script src="/assets/js/main.js?v=118ad06f" defer></script>
 </body>
 </html>

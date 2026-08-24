@@ -181,7 +181,13 @@
       if (!form.reportValidity()) return;
 
       var d = new FormData(form);
-      var get = function (k) { return (d.get(k) || '').toString().trim(); };
+      // O maxlength do HTML é conveniência de interface e pode ser contornado;
+      // o corte aqui garante o limite mesmo se o DOM for manipulado.
+      var LIMITES = { nome: 120, empresa: 120, email: 180, servico: 80, mensagem: 2000 };
+      var get = function (k) {
+        var v = (d.get(k) || '').toString().trim();
+        return LIMITES[k] ? v.slice(0, LIMITES[k]) : v;
+      };
 
       // honeypot: bots preenchem campos escondidos, humanos não
       if (get('botcheck')) return;
