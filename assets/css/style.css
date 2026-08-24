@@ -712,7 +712,7 @@ html.no-js .acc__btn { cursor: default; }
 .cred:hover { background: var(--surface-200); }
 .cred__head { display: flex; align-items: center; gap: .65rem; }
 .cred__badge {
-  width: 40px; height: 40px; object-fit: contain; flex-shrink: 0;
+  height: 44px; width: auto; max-width: 88px; object-fit: contain; flex-shrink: 0;
   border-radius: var(--r-sm);
 }
 .cred strong {
